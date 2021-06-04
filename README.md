@@ -1,0 +1,1 @@
+# magalu-tdc-connections
