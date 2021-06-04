@@ -4,13 +4,28 @@
   "description": "TDC Demo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "oas:build": "node src/build-oas.js",
+    "lint": "eslint ./src",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/allbarbos/magalu-tdc-connections.git"
   },
+  "dependencies": {
+    "@pact-foundation/pact": "^9.15.5",
+    "@pact-foundation/pact-node": "^10.12.2",
+    "debug": "^2.6.9",
+    "express": "^4.17.1",
+    "http-server": "^0.12.3",
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
-    "better-call-saul": "^1.6.0-alpha"
+    "better-call-saul": "^1.6.0-alpha",
+    "eslint": "^7.27.0",
+    "jest": "^27.0.1",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   }
 }

@@ -10,15 +10,34 @@ jobs:
   tests:
     name: tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: node -v
-      - run: npm install
-      - run: npx better-call-saul --version
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+      
+      - name: Saul - Validation
+        run: |
+          npm run oas:build
+          npx better-call-saul validate --spec="openapi.json"
+
+      - name: Saul - Generate and publish contract
+        run: |
+          npm run oas:build
+          npx better-call-saul toPact --spec="$PWD/openapi.json"
+          npx better-call-saul publish --json="$PWD/output/release_1.0.0.json" --url="http://pact-maestro.ipet.sh" --tags="['prod']" --consumer-version="1.0.0"
