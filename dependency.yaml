@@ -1,0 +1,17 @@
+version: 1.0.
+owner: Squad Users
+tribe: Tribe APIs
+application:
+    fortify_id: api-users
+    description: "API RESTful que possui a função de..."
+    health_check: "https://api.users.magazineluiza.com.br/healthcheck/"
+    name: api-users
+dependencies:
+    infrastructure:
+        - teresa
+        - mongodb
+        - redis
+        - kinesis
+        - pubsub
+    internal:
+        - doory
