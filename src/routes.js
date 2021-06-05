@@ -2,14 +2,16 @@ const express = require('express')
 const routes = express.Router()
 const uuid = require('uuid')
 
+const user = 
+{
+  id: 'abd3796b-7f18-4cbf-bde7-d82146e33051',
+  name: 'Peter Parker',
+  email: 'peter.parker@luizalabs.com',
+  phone: '11999999999'
+}
+
 const users = [
-  {
-    id: 'abd3796b-7f18-4cbf-bde7-d82146e33051',
-    name: 'Peter Parker',
-    email: 'peter.parker@luizalabs.com',
-    phone: '11999999999',
-    age: 40
-  }
+  user
 ]
 
 // const routes = Router()
@@ -87,14 +89,6 @@ routes.get('/users/:id', (req, res) => {
  *               $ref: '#/components/schemas/User'
  */
 routes.post('/users', (req, res) => {
-  const user = {
-    id: 'abd3796b-7f18-4cbf-bde7-d82146e33051',
-    name: 'Peter Parker',
-    email: 'peter.parker@luizalabs.com',
-    phone: '11999999999',
-    age: 40
-  }
-
   users.push(user)
   return res.status(201).json(user)
 })
