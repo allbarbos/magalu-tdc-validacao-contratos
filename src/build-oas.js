@@ -39,6 +39,9 @@ const swaggerOptions = {
             },
             phone: {
               type: 'string'
+            },
+            age: {
+              type: 'integer'
             }
           },
           example: {
