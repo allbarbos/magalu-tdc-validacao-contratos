@@ -11,7 +11,7 @@ describe('Squad Users', () => {
     server.close()
   });
 
-  test('should validate the expectations of our consumer', async () => {
+  test('should validate the expectations of our consumer', () => {
     const opts = {
       provider: 'User API',
       providerBaseUrl: 'http://localhost:3000',
@@ -28,7 +28,7 @@ describe('Squad Users', () => {
         throw error
       }
     }).finally(() => {
-      
+
     });
   })
 })
