@@ -39,22 +39,18 @@ const swaggerOptions = {
             },
             phone: {
               type: 'string'
-            },
-            age: {
-              type: 'integer'
             }
           },
           example: {
             id: 'abd3796b-7f18-4cbf-bde7-d82146e33051',
             name: 'Peter Parker',
             email: 'peter.parker@luizalabs.com',
-            phone: '11999999999',
-            age: 40
+            phone: '11999999999'
           }
         },
         Users: {
           type: 'array',
-          example: [{ id: 'abd3796b-7f18-4cbf-bde7-d82146e33051', name: 'Peter Parker', email: 'peter.parker@luizalabs.com', phone: '11999999999', age: 40 }],
+          example: [{ id: 'abd3796b-7f18-4cbf-bde7-d82146e33051', name: 'Peter Parker', email: 'peter.parker@luizalabs.com', phone: '11999999999' }],
           items: {
             $ref: '#/components/schemas/User'
           }
