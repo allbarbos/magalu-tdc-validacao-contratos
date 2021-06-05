@@ -5,8 +5,6 @@ const jestConfig = require('../jest.config')
 const pkg = require('../package.json')
 const { server } = require('../src/index')
 
-jest.setTimeout(15000);
-
 describe('Squad Users', () => {
   afterAll(() => {
     server.close()
@@ -29,5 +27,5 @@ describe('Squad Users', () => {
         throw error
       }
     }
-  })
+  }, 20000)
 })
