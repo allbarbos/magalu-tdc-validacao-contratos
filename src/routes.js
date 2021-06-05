@@ -4,7 +4,6 @@ const uuid = require('uuid')
 
 const users = [
   {
-    id: 'abd3796b-7f18-4cbf-bde7-d82146e33051',
     name: 'Peter Parker',
     email: 'peter.parker@luizalabs.com',
     phone: '11999999999'
