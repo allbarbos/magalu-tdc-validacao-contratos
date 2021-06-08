@@ -35,10 +35,7 @@ jobs:
         run: npx better-call-saul validate --spec="openapi.json"
 
       - name: Saul Create Contract
-        run: |
-          ls -la
-          npx better-call-saul toPact --spec="openapi.json"
-          ls -la
+        run: npx better-call-saul toPact --spec="openapi.json"
 
       - name: Saul Create Contract
         run: npx better-call-saul publish --json="output-pact.json" --url="http://pact-maestro.ipet.sh" --user="broker-user" --password="broker-password" --tags="[''prod'']" --consumer-version="1.0.0"'
