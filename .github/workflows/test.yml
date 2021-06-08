@@ -2,9 +2,9 @@ name: Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   tests:
@@ -30,29 +30,32 @@ jobs:
 
       - name: Run Tests
         run: npm test
-      
+
       - name: Saul Validation
-        run: npx better-call-saul validate --spec="openapi.json"
+        run: |
+          npx better-call-saul validate --spec="openapi.json"
+          echo $PWD
 
       - name: Saul Create Contract
-        run: npx better-call-saul toPact --spec="openapi.json"
+        run: |
+          ls -la
+          npx better-call-saul toPact --spec="openapi.json"
+          ls -la
 
       - name: Saul Create Contract
         run: npx better-call-saul publish --json="output-pact.json" --url="http://pact-maestro.ipet.sh" --user="broker-user" --password="broker-password" --tags="[''prod'']" --consumer-version="1.0.0"'
-
-      # ------------------------------------------------------------------
-
-      # - name: OAS Validation - Publish Contract 
+        # ------------------------------------------------------------------
+      # - name: OAS Validation - Publish Contract
       #   uses: actions/setup-node@v1
       #   with:
       #     node-version: ${{ matrix.node-version }}
-      # - run: better-call-saul 
+      # - run: better-call-saul
       # - run: better-call-saul validate --spec="openapi.json"
       # - run: better-call-saul toPact --spec="openapi.json"
-      # - run: 'better-call-saul publish 
-      #   --json="output-pact.json" 
-      #   --url="broker-url.com" 
-      #   --user="broker-user" 
-      #   --password="broker-password" 
-      #   --tags="[''prod'']" 
+      # - run: 'better-call-saul publish
+      #   --json="output-pact.json"
+      #   --url="broker-url.com"
+      #   --user="broker-user"
+      #   --password="broker-password"
+      #   --tags="[''prod'']"
       #   --consumer-version="1.0.0"'
