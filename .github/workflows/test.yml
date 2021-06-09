@@ -24,7 +24,6 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
       - name: Install Dependencies
         run: npm install
 
@@ -35,7 +34,6 @@ jobs:
         run: |
           npm run oas:build
           npx better-call-saul validate --spec="openapi.json"
-
       - name: Saul - Generate and publish contract
         run: |
           npm run oas:build

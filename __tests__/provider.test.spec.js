@@ -1,18 +1,17 @@
 const { Verifier } = require('@pact-foundation/pact')
 var pact = require('@pact-foundation/pact-node')
-const jestConfig = require('../jest.config')
 
 const pkg = require('../package.json')
 const { server } = require('../src/index')
 
-jest.setTimeout(15000);
+jest.setTimeout(15000)
 
 describe('Squad Users', () => {
   afterAll(() => {
     server.close()
   });
 
-  test('should validate the expectations of our consumer', async () => {
+  test('should validate the expectations of our consumer', () => {
     const opts = {
       provider: 'User API',
       providerBaseUrl: 'http://localhost:3000',
@@ -21,13 +20,15 @@ describe('Squad Users', () => {
       providerVersion: pkg.version
     }
 
-    try {
-      await pact.verifyPacts(opts);
-    } catch (error) {
+    return new Verifier(opts).verifyProvider().then(output => {
+      console.log(output);
+    }).catch((error) => {
       if (!error.message.includes('status=404')) {
         console.log(error)
         throw error
       }
-    }
+    }).finally(() => {
+
+    });
   })
 })
